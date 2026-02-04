@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <h1 class="site-name">Myntra Lite</h1>
+            <h1 class="site-name">Myntra Lite Admin</h1>
             <div class="nav-links">
                 <a href="admin.html" class="active">Dashboard</a>
                 <a href="../index.html">Logout</a>
@@ -23,60 +23,150 @@
     
     <main class="dashboard-main">
         <div class="dashboard-header">
-            <h2>Admin Dashboard</h2>
-            <p>Platform overview and management</p>
+            <h2>Admin Control Panel</h2>
+            <p>Complete platform management and analytics</p>
         </div>
         
-        <div class="dashboard-content">
-            <div class="stats-grid">
-                <div class="stat-card">
+        <!-- Stats Overview -->
+        <div class="stats-grid-modern">
+            <div class="stat-card-modern stat-users">
+                <div class="stat-icon">👥</div>
+                <div class="stat-details">
                     <h3>Total Users</h3>
                     <p class="stat-number" id="total-users">0</p>
                 </div>
-                <div class="stat-card">
-                    <h3>Total Merchants</h3>
+            </div>
+            <div class="stat-card-modern stat-merchants">
+                <div class="stat-icon">🏪</div>
+                <div class="stat-details">
+                    <h3>Merchants</h3>
                     <p class="stat-number" id="total-merchants">0</p>
                 </div>
-                <div class="stat-card">
-                    <h3>Total Products</h3>
+            </div>
+            <div class="stat-card-modern stat-products">
+                <div class="stat-icon">📦</div>
+                <div class="stat-details">
+                    <h3>Products</h3>
                     <p class="stat-number" id="total-products">0</p>
                 </div>
-                <div class="stat-card">
-                    <h3>Total Orders</h3>
+            </div>
+            <div class="stat-card-modern stat-orders">
+                <div class="stat-icon">🛍️</div>
+                <div class="stat-details">
+                    <h3>Orders</h3>
                     <p class="stat-number" id="total-orders">0</p>
                 </div>
-                <div class="stat-card">
-                    <h3>Total Revenue</h3>
+            </div>
+            <div class="stat-card-modern stat-revenue">
+                <div class="stat-icon">💰</div>
+                <div class="stat-details">
+                    <h3>Revenue</h3>
                     <p class="stat-number" id="total-revenue">₹0</p>
                 </div>
             </div>
-            
-            <div class="admin-section">
-                <h3>System Management</h3>
-                <div class="action-section">
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+            <button class="tab-btn" onclick="switchTab('users')">Users</button>
+            <button class="tab-btn" onclick="switchTab('products')">Products</button>
+            <button class="tab-btn" onclick="switchTab('orders')">Orders</button>
+            <button class="tab-btn" onclick="switchTab('analytics')">Analytics</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview-tab" class="tab-content active">
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <h3>System Management</h3>
+                    <p>Reset platform data to default state</p>
                     <button class="btn btn-warning" onclick="resetToDefaultData()">Reset to Default Data</button>
-                    <span id="reset-message" style="margin-left: 1rem; color: #48bb78; font-weight: 600;"></span>
+                    <span id="reset-message" class="feedback-message"></span>
+                </div>
+                <div class="overview-card">
+                    <h3>Quick Stats</h3>
+                    <div class="quick-stats">
+                        <div class="quick-stat-item">
+                            <span class="label">Active Users:</span>
+                            <span class="value" id="active-users">0</span>
+                        </div>
+                        <div class="quick-stat-item">
+                            <span class="label">Disabled Users:</span>
+                            <span class="value" id="disabled-users">0</span>
+                        </div>
+                        <div class="quick-stat-item">
+                            <span class="label">Avg Order Value:</span>
+                            <span class="value" id="avg-order">₹0</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="admin-section">
-                <h3>All Users</h3>
-                <div id="users-list" class="data-list">
-                    <!-- Users will be loaded dynamically -->
-                </div>
+        <!-- Users Tab -->
+        <div id="users-tab" class="tab-content">
+            <div class="section-header">
+                <h3>User Management</h3>
+                <p>Manage user accounts and permissions</p>
             </div>
-            
-            <div class="admin-section">
-                <h3>All Products</h3>
-                <div id="products-list" class="data-list">
-                    <!-- Products will be loaded dynamically -->
-                </div>
+            <div id="users-list" class="modern-data-grid">
+                <!-- Users will be loaded dynamically -->
             </div>
+        </div>
 
-            <div class="admin-section">
-                <h3>All Orders</h3>
-                <div id="orders-list" class="data-list">
-                    <!-- Orders will be loaded dynamically -->
+        <!-- Products Tab -->
+        <div id="products-tab" class="tab-content">
+            <div class="section-header">
+                <h3>Product Management</h3>
+                <p>View and manage all products across merchants</p>
+            </div>
+            <div id="products-list" class="modern-data-grid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="orders-tab" class="tab-content">
+            <div class="section-header">
+                <h3>Order Management</h3>
+                <p>Track all customer orders and revenue</p>
+            </div>
+            <div id="orders-list" class="orders-grid">
+                <!-- Orders will be loaded dynamically -->
+            </div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div id="analytics-tab" class="tab-content">
+            <div class="section-header">
+                <h3>Platform Analytics</h3>
+                <p>Insights and performance metrics</p>
+            </div>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h4>Category Distribution</h4>
+                    <div id="category-stats" class="analytics-content">
+                        <!-- Category stats will be loaded -->
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <h4>Merchant Performance</h4>
+                    <div id="merchant-stats" class="analytics-content">
+                        <!-- Merchant stats will be loaded -->
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <h4>Price Range Analysis</h4>
+                    <div id="price-stats" class="analytics-content">
+                        <!-- Price stats will be loaded -->
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <h4>Order Trends</h4>
+                    <div id="order-trends" class="analytics-content">
+                        <!-- Order trends will be loaded -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,6 +178,7 @@
         let allUsers = [];
         let allProducts = [];
         let allOrders = [];
+        let currentTab = 'overview';
         
         // Initialize admin dashboard
         async function initAdminDashboard() {
@@ -97,6 +188,24 @@
             window.addEventListener('usersUpdated', refreshUsers);
             window.addEventListener('productsUpdated', refreshProducts);
             window.addEventListener('ordersUpdated', refreshOrders);
+        }
+        
+        // Switch tabs
+        function switchTab(tabName) {
+            currentTab = tabName;
+            
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Load analytics if switching to analytics tab
+            if (tabName === 'analytics') {
+                displayAnalytics();
+            }
         }
         
         // Refresh all data
@@ -127,7 +236,7 @@
             updateStats();
         }
         
-        // Display all users with status and controls
+        // Display all users
         function displayUsers() {
             const container = document.getElementById('users-list');
             container.innerHTML = '';
@@ -135,27 +244,33 @@
             allUsers.forEach(user => {
                 const isDisabled = user.disabled || false;
                 const item = document.createElement('div');
-                item.className = 'data-item' + (isDisabled ? ' disabled-item' : '');
+                item.className = 'modern-data-card' + (isDisabled ? ' disabled-card' : '');
                 item.innerHTML = `
-                    <div class="data-item-info">
-                        <strong>${user.name}</strong> (@${user.username})
+                    <div class="card-header">
+                        <div class="user-avatar">${user.name.charAt(0).toUpperCase()}</div>
+                        <div class="card-info">
+                            <h4>${user.name}</h4>
+                            <p>@${user.username}</p>
+                        </div>
                         <span class="badge badge-${user.role}">${user.role}</span>
-                        ${isDisabled ? '<span class="status-badge status-disabled">Disabled</span>' : '<span class="status-badge status-active">Active</span>'}
                     </div>
-                    <div class="data-item-actions">
+                    <div class="card-footer">
+                        ${isDisabled ? 
+                            '<span class="status-badge status-disabled">Disabled</span>' : 
+                            '<span class="status-badge status-active">Active</span>'}
                         ${user.role !== 'admin' ? `
-                            <button class="btn ${isDisabled ? 'btn-success' : 'btn-warning'}" 
+                            <button class="btn-modern ${isDisabled ? 'btn-success' : 'btn-warning'}" 
                                     onclick="toggleUserStatus(${user.id}, ${isDisabled}, this)">
                                 ${isDisabled ? 'Enable' : 'Disable'}
                             </button>
-                        ` : '<span class="admin-note">Cannot disable admin</span>'}
+                        ` : '<span class="admin-note">Protected</span>'}
                     </div>
                 `;
                 container.appendChild(item);
             });
         }
         
-        // Display all products with merchant info
+        // Display all products
         function displayProducts() {
             const container = document.getElementById('products-list');
             
@@ -167,23 +282,23 @@
             container.innerHTML = '';
             
             allProducts.forEach(product => {
-                // Check if image is URL or emoji
                 const isImageUrl = product.image.startsWith('http');
                 const imageHtml = isImageUrl 
                     ? `<img src="${product.image}" alt="${product.name}" onerror="this.outerHTML='<div class=\\'emoji\\'>📦</div>'">` 
                     : `<div class="emoji">${product.image}</div>`;
                 
                 const item = document.createElement('div');
-                item.className = 'data-item';
+                item.className = 'modern-data-card';
                 item.innerHTML = `
-                    <div class="data-item-image">${imageHtml}</div>
-                    <div class="data-item-info">
-                        <strong>${product.name}</strong>
-                        <p>${product.category} - ₹${product.price.toLocaleString()}</p>
-                        <small>Merchant: ${product.merchantId} | ID: ${product.id}</small>
+                    <div class="product-card-image">${imageHtml}</div>
+                    <div class="card-info">
+                        <h4>${product.name}</h4>
+                        <p class="product-category">${product.category}</p>
+                        <p class="product-price">₹${product.price.toLocaleString()}</p>
+                        <small class="product-meta">Merchant: ${product.merchantId} | ID: ${product.id}</small>
                     </div>
-                    <div class="data-item-actions">
-                        <button class="btn btn-danger" onclick="handleRemoveProduct('${product.id}', this)">Remove</button>
+                    <div class="card-footer">
+                        <button class="btn-modern btn-danger" onclick="handleRemoveProduct('${product.id}', this)">Remove</button>
                     </div>
                 `;
                 container.appendChild(item);
@@ -201,7 +316,6 @@
             
             container.innerHTML = '';
             
-            // Sort orders by date (newest first)
             const sortedOrders = [...allOrders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             
             sortedOrders.forEach(order => {
@@ -214,38 +328,190 @@
                 });
                 
                 const orderCard = document.createElement('div');
-                orderCard.className = 'order-card admin-order-card';
+                orderCard.className = 'order-card-modern';
                 
                 let itemsHtml = '';
                 order.items.forEach(item => {
                     itemsHtml += `
-                        <div class="order-item">
-                            <span class="order-item-name">${item.productName}</span>
-                            <span class="order-item-qty">Qty: ${item.quantity}</span>
-                            <span class="order-item-price">₹${item.total.toLocaleString()}</span>
+                        <div class="order-item-row">
+                            <span class="item-name">${item.productName}</span>
+                            <span class="item-qty">×${item.quantity}</span>
+                            <span class="item-price">₹${item.total.toLocaleString()}</span>
                         </div>
                     `;
                 });
                 
                 orderCard.innerHTML = `
-                    <div class="order-header">
-                        <div class="order-id">Order #${order.orderId}</div>
-                        <div class="order-status status-${order.status.toLowerCase()}">${order.status}</div>
+                    <div class="order-card-header">
+                        <div>
+                            <h4>Order #${order.orderId}</h4>
+                            <p class="order-customer">Customer: ${order.userName}</p>
+                        </div>
+                        <span class="order-status status-${order.status.toLowerCase()}">${order.status}</span>
                     </div>
-                    <div class="order-meta">
-                        <span>Customer: ${order.userName}</span>
-                        <span>${orderDate}</span>
-                    </div>
-                    <div class="order-items">
+                    <div class="order-date">${orderDate}</div>
+                    <div class="order-items-list">
                         ${itemsHtml}
                     </div>
-                    <div class="order-total">
-                        <strong>Total Amount:</strong> ₹${order.totalAmount.toLocaleString()}
+                    <div class="order-card-footer">
+                        <strong>Total:</strong>
+                        <strong class="order-total-amount">₹${order.totalAmount.toLocaleString()}</strong>
                     </div>
                 `;
                 
                 container.appendChild(orderCard);
             });
+        }
+
+        // Display analytics
+        function displayAnalytics() {
+            displayCategoryStats();
+            displayMerchantStats();
+            displayPriceStats();
+            displayOrderTrends();
+        }
+
+        // Category distribution
+        function displayCategoryStats() {
+            const container = document.getElementById('category-stats');
+            const categories = {};
+            
+            allProducts.forEach(product => {
+                categories[product.category] = (categories[product.category] || 0) + 1;
+            });
+            
+            let html = '<div class="stat-list">';
+            Object.entries(categories).sort((a, b) => b[1] - a[1]).forEach(([category, count]) => {
+                const percentage = ((count / allProducts.length) * 100).toFixed(1);
+                html += `
+                    <div class="stat-row">
+                        <span class="stat-label">${category}</span>
+                        <span class="stat-value">${count} (${percentage}%)</span>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            container.innerHTML = html || '<p class="no-data">No data available</p>';
+        }
+
+        // Merchant performance
+        function displayMerchantStats() {
+            const container = document.getElementById('merchant-stats');
+            const merchants = {};
+            
+            allProducts.forEach(product => {
+                merchants[product.merchantId] = (merchants[product.merchantId] || 0) + 1;
+            });
+            
+            let html = '<div class="stat-list">';
+            Object.entries(merchants).sort((a, b) => b[1] - a[1]).forEach(([merchantId, count]) => {
+                html += `
+                    <div class="stat-row">
+                        <span class="stat-label">${merchantId}</span>
+                        <span class="stat-value">${count} products</span>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            container.innerHTML = html || '<p class="no-data">No data available</p>';
+        }
+
+        // Price range analysis
+        function displayPriceStats() {
+            const container = document.getElementById('price-stats');
+            
+            if (allProducts.length === 0) {
+                container.innerHTML = '<p class="no-data">No data available</p>';
+                return;
+            }
+            
+            const prices = allProducts.map(p => p.price);
+            const minPrice = Math.min(...prices);
+            const maxPrice = Math.max(...prices);
+            const avgPrice = (prices.reduce((a, b) => a + b, 0) / prices.length).toFixed(0);
+            
+            const ranges = {
+                'Under ₹500': prices.filter(p => p < 500).length,
+                '₹500 - ₹1000': prices.filter(p => p >= 500 && p < 1000).length,
+                '₹1000 - ₹2000': prices.filter(p => p >= 1000 && p < 2000).length,
+                '₹2000 - ₹5000': prices.filter(p => p >= 2000 && p < 5000).length,
+                'Above ₹5000': prices.filter(p => p >= 5000).length
+            };
+            
+            let html = '<div class="stat-list">';
+            html += `
+                <div class="stat-row">
+                    <span class="stat-label">Minimum Price</span>
+                    <span class="stat-value">₹${minPrice.toLocaleString()}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Maximum Price</span>
+                    <span class="stat-value">₹${maxPrice.toLocaleString()}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Average Price</span>
+                    <span class="stat-value">₹${parseInt(avgPrice).toLocaleString()}</span>
+                </div>
+            `;
+            
+            Object.entries(ranges).forEach(([range, count]) => {
+                if (count > 0) {
+                    html += `
+                        <div class="stat-row">
+                            <span class="stat-label">${range}</span>
+                            <span class="stat-value">${count} products</span>
+                        </div>
+                    `;
+                }
+            });
+            html += '</div>';
+            
+            container.innerHTML = html;
+        }
+
+        // Order trends
+        function displayOrderTrends() {
+            const container = document.getElementById('order-trends');
+            
+            if (allOrders.length === 0) {
+                container.innerHTML = '<p class="no-data">No orders yet</p>';
+                return;
+            }
+            
+            const totalRevenue = allOrders.reduce((sum, order) => sum + order.totalAmount, 0);
+            const avgOrderValue = (totalRevenue / allOrders.length).toFixed(0);
+            const totalItems = allOrders.reduce((sum, order) => 
+                sum + order.items.reduce((itemSum, item) => itemSum + item.quantity, 0), 0);
+            const avgItemsPerOrder = (totalItems / allOrders.length).toFixed(1);
+            
+            let html = '<div class="stat-list">';
+            html += `
+                <div class="stat-row">
+                    <span class="stat-label">Total Orders</span>
+                    <span class="stat-value">${allOrders.length}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Total Revenue</span>
+                    <span class="stat-value">₹${totalRevenue.toLocaleString()}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Avg Order Value</span>
+                    <span class="stat-value">₹${parseInt(avgOrderValue).toLocaleString()}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Avg Items/Order</span>
+                    <span class="stat-value">${avgItemsPerOrder}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Total Items Sold</span>
+                    <span class="stat-value">${totalItems}</span>
+                </div>
+            `;
+            html += '</div>';
+            
+            container.innerHTML = html;
         }
         
         // Update statistics
@@ -253,21 +519,25 @@
             const userCount = allUsers.filter(u => u.role === 'user').length;
             const merchantCount = allUsers.filter(u => u.role === 'merchant').length;
             const totalRevenue = allOrders.reduce((sum, order) => sum + order.totalAmount, 0);
+            const activeUsers = allUsers.filter(u => !u.disabled).length;
+            const disabledUsers = allUsers.filter(u => u.disabled).length;
+            const avgOrder = allOrders.length > 0 ? (totalRevenue / allOrders.length).toFixed(0) : 0;
             
             document.getElementById('total-users').textContent = userCount;
             document.getElementById('total-merchants').textContent = merchantCount;
             document.getElementById('total-products').textContent = allProducts.length;
             document.getElementById('total-orders').textContent = allOrders.length;
             document.getElementById('total-revenue').textContent = '₹' + totalRevenue.toLocaleString();
+            document.getElementById('active-users').textContent = activeUsers;
+            document.getElementById('disabled-users').textContent = disabledUsers;
+            document.getElementById('avg-order').textContent = '₹' + parseInt(avgOrder).toLocaleString();
         }
         
-        // Toggle user/merchant status (enable/disable)
+        // Toggle user status
         async function toggleUserStatus(userId, currentlyDisabled, button) {
-            // Disable button during processing
             button.disabled = true;
             button.textContent = currentlyDisabled ? 'Enabling...' : 'Disabling...';
             
-            // Update user status
             const users = await StateManager.getUsers();
             const userIndex = users.findIndex(u => u.id === userId);
             
@@ -275,38 +545,33 @@
                 users[userIndex].disabled = !currentlyDisabled;
                 StateManager.setUsers(users);
                 
-                // Show success feedback
                 button.textContent = currentlyDisabled ? 'Enabled!' : 'Disabled!';
                 
-                // Users will auto-refresh via event listener
                 setTimeout(() => {
                     button.disabled = false;
                 }, 1000);
             }
         }
         
-        // Handle remove product with feedback
+        // Remove product
         async function handleRemoveProduct(productId, button) {
-            // Disable button
             button.disabled = true;
             button.textContent = 'Removing...';
             
             await deleteProduct(productId);
-            
-            // Products will auto-refresh via event listener
         }
 
-        // Reset to default data (clears localStorage and reloads)
+        // Reset to default data
         function resetToDefaultData() {
             const messageEl = document.getElementById('reset-message');
             messageEl.textContent = 'Resetting...';
+            messageEl.style.color = '#667eea';
             
-            // Clear all localStorage
             StateManager.clearAll();
             
             messageEl.textContent = 'Reset complete! Reloading...';
+            messageEl.style.color = '#48bb78';
             
-            // Reload page after short delay
             setTimeout(() => {
                 location.reload();
             }, 1000);

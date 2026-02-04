@@ -13,9 +13,9 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <h1 class="site-name">Myntra Lite</h1>
+            <h1 class="site-name">Myntra Lite Merchant</h1>
             <div class="nav-links">
-                <a href="merchant.html" class="active">My Products</a>
+                <a href="merchant.html" class="active">My Store</a>
                 <a href="../index.html">Logout</a>
             </div>
         </div>
@@ -24,83 +24,125 @@
     <main class="dashboard-main">
         <div class="dashboard-header">
             <h2>Merchant Dashboard</h2>
-            <p>Manage your product listings</p>
+            <p>Manage your product inventory and listings</p>
         </div>
         
-        <div class="dashboard-content">
-            <div class="stats-grid">
-                <div class="stat-card">
+        <!-- Stats Overview -->
+        <div class="merchant-stats-grid">
+            <div class="stat-card-modern stat-products">
+                <div class="stat-icon">📦</div>
+                <div class="stat-details">
                     <h3>Total Products</h3>
                     <p class="stat-number" id="total-products">0</p>
                 </div>
             </div>
-            
-            <div class="action-section">
-                <button class="btn btn-primary" onclick="toggleAddProductForm()">Add New Product</button>
+            <div class="stat-card-modern stat-categories">
+                <div class="stat-icon">🏷️</div>
+                <div class="stat-details">
+                    <h3>Categories</h3>
+                    <p class="stat-number" id="total-categories">0</p>
+                </div>
             </div>
-            
-            <div id="add-product-form" class="product-form" style="display: none;">
+            <div class="stat-card-modern stat-value">
+                <div class="stat-icon">💎</div>
+                <div class="stat-details">
+                    <h3>Inventory Value</h3>
+                    <p class="stat-number" id="inventory-value">₹0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="action-bar">
+            <button class="btn-modern btn-primary" onclick="toggleAddProductForm()">
+                <span>➕</span> Add New Product
+            </button>
+        </div>
+        
+        <!-- Add Product Form -->
+        <div id="add-product-form" class="modern-form-card" style="display: none;">
+            <div class="form-card-header">
                 <h3>Add New Product</h3>
-                <form onsubmit="handleAddProduct(event)">
-                    <div class="form-group">
-                        <label for="product-name">Product Name:</label>
-                        <input type="text" id="product-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="product-category">Category:</label>
-                        <input type="text" id="product-category" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="product-price">Price (₹):</label>
-                        <input type="number" id="product-price" min="0" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="product-image">Image URL:</label>
-                        <input type="text" id="product-image" placeholder="https://example.com/image.jpg or emoji" required>
-                        <small>Enter image URL or emoji (e.g., 👕)</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="product-description">Description:</label>
-                        <textarea id="product-description" rows="3" placeholder="Product description"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Product</button>
-                    <button type="button" class="btn btn-secondary" onclick="toggleAddProductForm()">Cancel</button>
-                </form>
+                <button class="close-btn" onclick="toggleAddProductForm()">✕</button>
             </div>
-            
-            <div id="edit-product-form" class="product-form" style="display: none;">
-                <h3>Edit Product</h3>
-                <form onsubmit="handleEditProduct(event)">
-                    <input type="hidden" id="edit-product-id">
+            <form onsubmit="handleAddProduct(event)">
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="edit-product-name">Product Name:</label>
+                        <label for="product-name">Product Name *</label>
+                        <input type="text" id="product-name" placeholder="Enter product name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-category">Category *</label>
+                        <input type="text" id="product-category" placeholder="e.g., Men's Clothing" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-price">Price (₹) *</label>
+                        <input type="number" id="product-price" min="0" placeholder="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-image">Image URL *</label>
+                        <input type="text" id="product-image" placeholder="https://... or emoji" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Description</label>
+                    <textarea id="product-description" rows="3" placeholder="Product description (optional)"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-modern btn-primary">Add Product</button>
+                    <button type="button" class="btn-modern btn-secondary" onclick="toggleAddProductForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Edit Product Form -->
+        <div id="edit-product-form" class="modern-form-card" style="display: none;">
+            <div class="form-card-header">
+                <h3>Edit Product</h3>
+                <button class="close-btn" onclick="toggleEditProductForm()">✕</button>
+            </div>
+            <form onsubmit="handleEditProduct(event)">
+                <input type="hidden" id="edit-product-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-product-name">Product Name *</label>
                         <input type="text" id="edit-product-name" required>
                     </div>
                     <div class="form-group">
-                        <label for="edit-product-category">Category:</label>
+                        <label for="edit-product-category">Category *</label>
                         <input type="text" id="edit-product-category" required>
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="edit-product-price">Price (₹):</label>
+                        <label for="edit-product-price">Price (₹) *</label>
                         <input type="number" id="edit-product-price" min="0" required>
                     </div>
                     <div class="form-group">
-                        <label for="edit-product-image">Image URL:</label>
-                        <input type="text" id="edit-product-image" placeholder="https://example.com/image.jpg or emoji" required>
-                        <small>Enter image URL or emoji (e.g., 👕)</small>
+                        <label for="edit-product-image">Image URL *</label>
+                        <input type="text" id="edit-product-image" required>
                     </div>
-                    <div class="form-group">
-                        <label for="edit-product-description">Description:</label>
-                        <textarea id="edit-product-description" rows="3" placeholder="Product description"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Update Product</button>
-                    <button type="button" class="btn btn-secondary" onclick="toggleEditProductForm()">Cancel</button>
-                </form>
-            </div>
-            
-            <div class="products-list" id="merchant-products">
-                <!-- Products will be loaded dynamically -->
-            </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit-product-description">Description</label>
+                    <textarea id="edit-product-description" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-modern btn-primary">Update Product</button>
+                    <button type="button" class="btn-modern btn-secondary" onclick="toggleEditProductForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Products Grid -->
+        <div class="section-header">
+            <h3>My Products</h3>
+            <p>Manage your product listings</p>
+        </div>
+        <div class="merchant-products-grid" id="merchant-products">
+            <!-- Products will be loaded dynamically -->
         </div>
     </main>
     
@@ -115,11 +157,10 @@
             currentUser = StateManager.getCurrentUser();
             await refreshProducts();
             
-            // Listen for product updates (from other tabs or admin)
             window.addEventListener('productsUpdated', refreshProducts);
         }
         
-        // Refresh products from state
+        // Refresh products
         async function refreshProducts() {
             const allProducts = await getAllProducts();
             merchantProducts = getProductsByMerchant(allProducts, currentUser.merchantId);
@@ -132,31 +173,35 @@
             const container = document.getElementById('merchant-products');
             
             if (merchantProducts.length === 0) {
-                container.innerHTML = '<div class="empty-state">No products yet. Add your first product!</div>';
+                container.innerHTML = '<div class="empty-state-modern">📦<br>No products yet<br><small>Add your first product to get started</small></div>';
                 return;
             }
             
             container.innerHTML = '';
             
             merchantProducts.forEach(product => {
-                // Check if image is URL or emoji
                 const isImageUrl = product.image.startsWith('http');
                 const imageHtml = isImageUrl 
                     ? `<img src="${product.image}" alt="${product.name}" onerror="this.outerHTML='<div class=\\'emoji\\'>📦</div>'">` 
                     : `<div class="emoji">${product.image}</div>`;
                 
                 const card = document.createElement('div');
-                card.className = 'product-item';
+                card.className = 'merchant-product-card';
                 card.innerHTML = `
-                    <div class="product-item-image">${imageHtml}</div>
-                    <div class="product-item-info">
-                        <h4>${product.name}</h4>
-                        <p>${product.category} - ₹${product.price.toLocaleString()}</p>
-                        <span class="product-id">ID: ${product.id}</span>
+                    <div class="product-card-image-large">${imageHtml}</div>
+                    <div class="product-card-content">
+                        <h4 class="product-title">${product.name}</h4>
+                        <p class="product-category-tag">${product.category}</p>
+                        <p class="product-price-large">₹${product.price.toLocaleString()}</p>
+                        <p class="product-id-tag">ID: ${product.id}</p>
                     </div>
-                    <div class="product-item-actions">
-                        <button class="btn btn-secondary" onclick="showEditForm('${product.id}')">Edit</button>
-                        <button class="btn btn-danger" onclick="handleDeleteProduct('${product.id}', this)">Delete</button>
+                    <div class="product-card-actions">
+                        <button class="btn-modern btn-secondary" onclick="showEditForm('${product.id}')">
+                            <span>✏️</span> Edit
+                        </button>
+                        <button class="btn-modern btn-danger" onclick="handleDeleteProduct('${product.id}', this)">
+                            <span>🗑️</span> Delete
+                        </button>
                     </div>
                 `;
                 container.appendChild(card);
@@ -165,7 +210,12 @@
         
         // Update statistics
         function updateStats() {
+            const categories = new Set(merchantProducts.map(p => p.category)).size;
+            const inventoryValue = merchantProducts.reduce((sum, p) => sum + p.price, 0);
+            
             document.getElementById('total-products').textContent = merchantProducts.length;
+            document.getElementById('total-categories').textContent = categories;
+            document.getElementById('inventory-value').textContent = '₹' + inventoryValue.toLocaleString();
         }
         
         // Toggle add product form
@@ -174,13 +224,13 @@
             const isVisible = form.style.display !== 'none';
             form.style.display = isVisible ? 'none' : 'block';
             
-            // Hide edit form if showing add form
             if (!isVisible) {
                 document.getElementById('edit-product-form').style.display = 'none';
+                form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         }
         
-        // Handle add product with validation and feedback
+        // Handle add product
         async function handleAddProduct(event) {
             event.preventDefault();
             
@@ -199,18 +249,14 @@
             
             await addProduct(newProduct);
             
-            // Show success feedback
             submitBtn.textContent = 'Added!';
             
-            // Reset form and hide after delay
             setTimeout(() => {
                 event.target.reset();
                 toggleAddProductForm();
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Add Product';
             }, 1000);
-            
-            // Products will auto-refresh via event listener
         }
         
         // Show edit form
@@ -218,10 +264,8 @@
             const product = merchantProducts.find(p => p.id === productId);
             if (!product) return;
             
-            // Hide add form
             document.getElementById('add-product-form').style.display = 'none';
             
-            // Populate edit form
             document.getElementById('edit-product-id').value = product.id;
             document.getElementById('edit-product-name').value = product.name;
             document.getElementById('edit-product-category').value = product.category;
@@ -229,20 +273,17 @@
             document.getElementById('edit-product-image').value = product.image;
             document.getElementById('edit-product-description').value = product.description || '';
             
-            // Show edit form
-            document.getElementById('edit-product-form').style.display = 'block';
-            
-            // Scroll to form
-            document.getElementById('edit-product-form').scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // Toggle edit product form
-        function toggleEditProductForm() {
             const form = document.getElementById('edit-product-form');
-            form.style.display = 'none';
+            form.style.display = 'block';
+            form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
         
-        // Handle edit product with feedback
+        // Toggle edit form
+        function toggleEditProductForm() {
+            document.getElementById('edit-product-form').style.display = 'none';
+        }
+        
+        // Handle edit product
         async function handleEditProduct(event) {
             event.preventDefault();
             
@@ -261,28 +302,21 @@
             
             await updateProduct(productId, updatedData);
             
-            // Show success feedback
             submitBtn.textContent = 'Updated!';
             
-            // Hide form after delay
             setTimeout(() => {
                 toggleEditProductForm();
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Update Product';
             }, 1000);
-            
-            // Products will auto-refresh via event listener
         }
         
-        // Handle delete product with feedback
+        // Handle delete product
         async function handleDeleteProduct(productId, button) {
-            // Disable button
             button.disabled = true;
-            button.textContent = 'Deleting...';
+            button.innerHTML = '<span>⏳</span> Deleting...';
             
             await deleteProduct(productId);
-            
-            // Products will auto-refresh via event listener
         }
         
         // Initialize on page load
