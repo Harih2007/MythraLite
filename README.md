@@ -226,13 +226,7 @@ python -m http.server 8000
 # Visit: http://localhost:8000
 ```
 
-**Option 2: Node.js Server**
-```bash
-npx http-server
-# Visit: http://localhost:8080
-```
-
-**Option 3: Direct File Open**
+**Option 2: Direct File Open**
 ```
 Simply open index.html in your browser
 ```
