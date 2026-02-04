@@ -1807,3 +1807,41 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Search Bar Styles */
+.search-group {
+    flex: 2;
+    min-width: 250px;
+}
+
+.search-group input {
+    width: 100%;
+}
+
+#search-products {
+    padding: 0.7rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+}
+
+#search-products:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+#search-products::placeholder {
+    color: #999;
+}
+
+#clear-search {
+    background: #f0f0f0;
+    color: #666;
+}
+
+#clear-search:hover {
+    background: #e0e0e0;
+    color: #333;
+}

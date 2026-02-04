@@ -35,6 +35,11 @@
             </div>
             
             <div class="filters-section">
+                <div class="filter-group search-group">
+                    <label for="search-products">Search:</label>
+                    <input type="text" id="search-products" placeholder="Search products by name...">
+                </div>
+                
                 <div class="filter-group">
                     <label for="category-filter">Category:</label>
                     <select id="category-filter">
@@ -53,6 +58,7 @@
                 </div>
                 
                 <button id="apply-filters" class="btn btn-secondary">Apply Filters</button>
+                <button id="clear-search" class="btn btn-secondary" onclick="clearSearch()">Clear</button>
             </div>
             
             <div class="products-grid" id="products-container">
@@ -111,7 +117,7 @@
     <script>
         // User Dashboard Logic
         let allProducts = [];
-        let currentFilters = { category: 'all', minPrice: 0, maxPrice: 999999 };
+        let currentFilters = { category: 'all', minPrice: 0, maxPrice: 999999, searchQuery: '' };
         let currentUser = null;
         
         // Initialize dashboard
@@ -453,6 +459,9 @@
             // Apply filters on change
             document.getElementById('apply-filters').addEventListener('click', applyFilters);
             
+            // Real-time search as user types
+            document.getElementById('search-products').addEventListener('input', applyFilters);
+            
             // Also apply on Enter key in price inputs
             document.getElementById('min-price').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') applyFilters();
@@ -467,11 +476,32 @@
             currentFilters.category = document.getElementById('category-filter').value;
             currentFilters.minPrice = parseInt(document.getElementById('min-price').value) || 0;
             currentFilters.maxPrice = parseInt(document.getElementById('max-price').value) || 999999;
+            currentFilters.searchQuery = document.getElementById('search-products').value.toLowerCase().trim();
             
             let filtered = filterByCategory(allProducts, currentFilters.category);
             filtered = filterByPriceRange(filtered, currentFilters.minPrice, currentFilters.maxPrice);
+            filtered = filterBySearch(filtered, currentFilters.searchQuery);
             
             displayProducts(filtered);
+        }
+        
+        // Filter by search query
+        function filterBySearch(products, query) {
+            if (!query) return products;
+            return products.filter(product => 
+                product.name.toLowerCase().includes(query) ||
+                product.category.toLowerCase().includes(query) ||
+                (product.description && product.description.toLowerCase().includes(query))
+            );
+        }
+        
+        // Clear search and filters
+        function clearSearch() {
+            document.getElementById('search-products').value = '';
+            document.getElementById('category-filter').value = 'all';
+            document.getElementById('min-price').value = '0';
+            document.getElementById('max-price').value = '10000';
+            applyFilters();
         }
         
         // Handle add to cart with visual feedback
