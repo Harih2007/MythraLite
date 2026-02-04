@@ -8,23 +8,159 @@
 </head>
 <body>
     <div class="landing-container">
-        <header class="landing-header">
-            <h1 class="site-name">Myntra Lite</h1>
-            <p class="tagline">Discover Fashion from Multiple Brands</p>
-        </header>
-        
-        <main class="landing-main">
-            <div class="hero-section">
-                <h2>Welcome to Myntra Lite</h2>
-                <p>Your one-stop destination for fashion and lifestyle products</p>
-                <a href="login.html" class="btn btn-primary">Login</a>
-                <br><br>
-                <a href="#" onclick="clearDataAndReload(event)" class="btn btn-secondary">Reset to Fresh Data</a>
+        <!-- Navigation Bar -->
+        <nav class="landing-nav">
+            <div class="nav-content">
+                <h1 class="brand-logo">Myntra Lite</h1>
+                <div class="nav-actions">
+                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#about" class="nav-link">About</a>
+                </div>
             </div>
-        </main>
-        
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Discover Your Style</h1>
+                <p class="hero-subtitle">Shop from 40+ curated fashion products across multiple categories</p>
+                <div class="hero-buttons">
+                    <a href="login.html" class="btn btn-hero-primary">Start Shopping</a>
+                    <a href="#features" class="btn btn-hero-secondary">Learn More</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">40+</span>
+                        <span class="stat-label">Products</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">User Roles</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Secure</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <h2 class="section-title">Why Choose Myntra Lite?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3>User Dashboard</h3>
+                    <p>Browse products, add to cart, and place orders seamlessly</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏪</div>
+                    <h3>Merchant Portal</h3>
+                    <p>Manage your products, add new items, and track inventory</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Admin Control</h3>
+                    <p>Full system oversight with user and product management</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛒</div>
+                    <h3>Smart Cart</h3>
+                    <p>Easy checkout with persistent cart across sessions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Order Tracking</h3>
+                    <p>View your order history and track status in real-time</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Modern UI</h3>
+                    <p>Clean, responsive design that works on all devices</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-emoji">👕</div>
+                    <h3>Men's Clothing</h3>
+                </div>
+                <div class="category-card">
+                    <div class="category-emoji">👗</div>
+                    <h3>Women's Clothing</h3>
+                </div>
+                <div class="category-card">
+                    <div class="category-emoji">👟</div>
+                    <h3>Footwear</h3>
+                </div>
+                <div class="category-card">
+                    <div class="category-emoji">👜</div>
+                    <h3>Accessories</h3>
+                </div>
+                <div class="category-card">
+                    <div class="category-emoji">📱</div>
+                    <h3>Electronics</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="about-content">
+                <h2 class="section-title">About Myntra Lite</h2>
+                <p class="about-text">
+                    Myntra Lite is a modern e-commerce platform built with vanilla JavaScript, 
+                    featuring role-based access control, real-time cart management, and a seamless 
+                    shopping experience. No frameworks, no backend - just pure frontend magic!
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-badge">HTML5</span>
+                    <span class="tech-badge">CSS3</span>
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">LocalStorage</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Start Shopping?</h2>
+            <p>Join Myntra Lite today and explore amazing fashion products</p>
+            <a href="login.html" class="btn btn-cta">Get Started Now</a>
+            <div class="reset-data-link">
+                <a href="#" onclick="clearDataAndReload(event)">Reset to Fresh Data</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
         <footer class="landing-footer">
-            <p>&copy; 2026 Myntra Lite. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Myntra Lite</h3>
+                    <p>Your fashion destination</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="login.html">Login</a>
+                    <a href="#features">Features</a>
+                    <a href="#about">About</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Demo Accounts</h4>
+                    <p>User: user/user</p>
+                    <p>Merchant: merchant/merchant</p>
+                    <p>Admin: admin/admin</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Myntra Lite. All rights reserved.</p>
+            </div>
         </footer>
     </div>
     
@@ -33,9 +169,22 @@
         function clearDataAndReload(event) {
             event.preventDefault();
             localStorage.clear();
-            alert('All data cleared! Page will reload with 50 fresh products.');
             location.reload();
         }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>
